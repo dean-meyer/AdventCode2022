@@ -13,18 +13,18 @@ function Day6()
         append!(parse, characters[k])
     end
     
-    # Find the start of the packet we need
+    # Find the start of the transmission we need
     for k in (packetsize + 1):length(characters)
         popfirst!(parse)
         append!(parse, characters[k])
 
-        if (isstartofpacket(parse))
+        if (transmissionstart(parse))
             return "It starts at position $(k)"
         end
     end
 end
 
-function isstartofpacket(parse)
+function transmissionstart(parse)
     for k in 1:length(parse)-1
         for j in k+1:length(parse)
             if(parse[k] == parse[j])
